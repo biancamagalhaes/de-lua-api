@@ -1,0 +1,52 @@
+-- Database: de-lua
+
+-- DROP DATABASE IF EXISTS "de-lua";
+
+CREATE TABLE psychologist (
+	psychologist_id serial PRIMARY KEY,
+	name VARCHAR ( 50 ) NOT NULL,
+	password VARCHAR ( 50 ) NOT NULL,
+	email VARCHAR ( 255 ) UNIQUE NOT NULL,
+	crp VARCHAR ( 5 ) NOT NULL,
+	state VARCHAR (50) NOT NULL,
+	created_on TIMESTAMP NOT NULL,
+    last_login TIMESTAMP 
+);
+
+CREATE TABLE "user" (
+	user_id serial PRIMARY KEY,
+	name VARCHAR ( 50 ) NOT NULL,
+	password VARCHAR ( 50 ) NOT NULL,
+	email VARCHAR ( 255 ) UNIQUE NOT NULL,
+	age int NOT NULL,
+	cpf VARCHAR ( 11 ) NOT NULL,
+	created_on TIMESTAMP NOT NULL,
+    last_login TIMESTAMP,
+	psychologist_id int,
+	CONSTRAINT fk_psychologist
+      FOREIGN KEY(psychologist_id) 
+	  REFERENCES psychologist(psychologist_id) 
+);
+
+CREATE TABLE "comments" (
+	comment_id serial PRIMARY KEY,
+	comment_type VARCHAR (7) NOT NULL,
+	"text" VARCHAR ( 1000 ) NOT NULL,
+	created_on TIMESTAMP NOT NULL,
+	diary_id int NOT NULL,
+	CONSTRAINT fk_diary
+      FOREIGN KEY(diary_id) 
+	  REFERENCES diary(diary_id)
+);
+
+CREATE TABLE diary (
+	diary_id serial PRIMARY KEY,
+	title VARCHAR ( 255 ) NOT NULL,
+	text VARCHAR ( 1000 ) NOT NULL,
+	feeling VARCHAR ( 255 ) NOT NULL,
+	user_id int,
+	CONSTRAINT fk_user
+      FOREIGN KEY(user_id) 
+	  REFERENCES "user"(user_id),
+);
+

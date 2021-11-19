@@ -1,0 +1,19 @@
+{
+    "up" : [
+        "BLOUSE",
+        "SHIRT",
+        "T_SHIRT",
+        "TOP",
+        "DRESS",
+        "CORSET",
+        "CROPPED"
+    ],
+    "down": [
+        "JEANS",
+        "SHORT",
+        "SKIRT",
+        "PANT",
+        "MINISKIRT",
+        "MINISHORT" 
+    ]
+}
